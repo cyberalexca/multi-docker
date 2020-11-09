@@ -13,7 +13,7 @@ after_success:
   - docker build -t alexeyca/multi-server -f ./server
   - docker build -t alexeyca/multi-worker -f ./worker
   # Log in to Docker CLI
-  - echo "Deploying for $DOCKER_ID"
+  - echo "Deploying for "; echo "$DOCKER_ID"
   - echo "$DOCKER_PASSWORD" | docker login --username="$DOCKER_ID" --password-stdin
   # Upload images
   - docker push alexeyca/multi-client
