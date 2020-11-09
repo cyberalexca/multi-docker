@@ -8,10 +8,10 @@ script:
   - docker run -e CI=true alexeyca/docker-react-test npm run test -- --coverage
 
 after_success:
-  - docker build -t alexeyca/multi-client -f ./client
-  - docker build -t alexeyca/multi-nginx -f ./nginx
-  - docker build -t alexeyca/multi-server -f ./server
-  - docker build -t alexeyca/multi-worker -f ./worker
+  - docker build -t alexeyca/multi-client ./client
+  - docker build -t alexeyca/multi-nginx ./nginx
+  - docker build -t alexeyca/multi-server ./server
+  - docker build -t alexeyca/multi-worker ./worker
   # Log in to Docker CLI
   - echo "Deploying for "; echo "$DOCKER_ID"
   - echo "$DOCKER_PASSWORD" | docker login --username="$DOCKER_ID" --password-stdin
