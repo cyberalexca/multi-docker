@@ -1,0 +1,33 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "alexeyca/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "alexeyca/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "alexeyca/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "alexeyca/multi-nginx",
+            "essential": true,
+            "portMappings": [
+                {"hostPort": 80, "containerPort": 80 }
+            ],
+            "links": ["client", "server"]
+        }
+
+    ]
+}
